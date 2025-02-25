@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Login</title>
+    <style>
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(-45deg, #ff9a9e, #d16dbf, #a18cd1, #fbc2eb);
+            background-size: 300% 300%;
+            animation: gradientAnimation 10s ease infinite;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        h2 {
+            color: #6a1b9a;
+        }
+        label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            margin-top: 10px;
+            color: black;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #6a1b9a;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            outline: none;
+            border: 2px solid #2ccbdd;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: left;
+            margin-top: 5px;
+            display: none;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 15px;
+        }
+        button {
+            background-color: #69215b;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background 0.3s ease-in-out;
+        }
+        button:hover {
+            background-color: #4a0072;
+        }
+        .links {
+            margin-top: 15px;
+            font-size: 14px;
+            color: black;
+        }
+        .links a {
+            color: #011113;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="login" method="POST">
+        <h2>Sign into your account</h2>
+        <hr>
+        
+        <label>Email:</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <span class="error" id="emailError">Invalid email address</span>
+        
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter password" required>
+        <span class="error" id="passwordError">Password must be at least 6 characters</span>
+        
+        <div class="button-container">
+            <button type="submit">Login</button>
+        </div>
+        
+        <p class="links"><a href="#">Forgot Password?</a></p>
+        <p class="links">Not registered? <a href="registration.html">Sign up</a></p>
+    </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                let valid = true;
+
+                // Validate Email
+                const email = document.querySelector("input[name='email']");
+                const emailError = document.getElementById("emailError");
+                if (!/\S+@\S+\.\S+/.test(email.value)) {
+                    emailError.style.display = "block";
+                    valid = false;
+                } else {
+                    emailError.style.display = "none";
+                }
+
+                // Validate Password (Min 6 characters)
+                const password = document.querySelector("input[name='password']");
+                const passwordError = document.getElementById("passwordError");
+                if (password.value.length < 6) {
+                    passwordError.style.display = "block";
+                    valid = false;
+                } else {
+                    passwordError.style.display = "none";
+                }
+                if (!valid) {
+                    event.preventDefault(); 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
