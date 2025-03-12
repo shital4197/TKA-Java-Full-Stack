@@ -32,7 +32,7 @@ public class HospitalDao {
 	    query.setParameter("name", "Rubi");
 	    query.setParameter("city","Pune");
 	    query.setParameter("state","Maharashtra");
-	    query.setParameter("email", "sanchiti@gmail.com");
+	    query.setParameter("email", "rubihospital@gmail.com");
 	    query.setParameter("contact","88957489654");
 
 	    query.executeUpdate(); 
